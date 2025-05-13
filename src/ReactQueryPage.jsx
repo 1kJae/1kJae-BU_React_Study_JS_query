@@ -10,9 +10,11 @@ const ReactQueryPage = () => {
         queryKey:['posts'],
         queryFn:fetchPost,
         retry: 1,
-        select:(data)=>{
+        staleTime: 60000, // 1분간 api호출 금지, 기본값 0
+        select: (data)=>{
           return data.data;
         },
+        // gcTime: 10000, // 10초간 캐시가 유지 stale < gctime
     });
     console.log("ddd", data, isLoading);
     console.log("error", isError, error);
